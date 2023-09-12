@@ -2,9 +2,9 @@
   "name": "hello-bolt-nodejs-aws-lambda",
   "version": "1.0.0",
   "description": "Deploying to AWS Lambda Bolt for JavaScript using the AwsLambdaReceiver",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "license": "MIT",

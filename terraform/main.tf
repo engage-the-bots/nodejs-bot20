@@ -6,7 +6,7 @@ module "bot_lambda" {
   source = "terraform-aws-modules/lambda/aws"
   function_name = var.slackbot_resource_name
   description   = "Engage 2023 Build your own NodeJS Slack Bot"
-  handler       = "src/app.lambda_handler"
+  handler       = "src/index.handler"
   runtime       = "nodejs18.x"
   source_path = "../slackbot-event-handler"
   create_lambda_function_url = true
