@@ -37,6 +37,10 @@ jobs:
         with:
           repository: ${{ github.repository }}
 
+      - name: Install dependencies
+        run: npm i --save @slack/bolt
+        working-directory: ./slackbot-event-handler
+
       - name: Package Slackbot Event Handler
         run: npm ci --omit=dev
         working-directory: ./slackbot-event-handler
