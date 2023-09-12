@@ -54,3 +54,8 @@ jobs:
         run: terraform apply -auto-approve -input=false
         id: tf_apply
         working-directory: ./terraform
+
+      - name: terraform output
+        run: terraform output -json
+        id: tf_output
+        working-directory: ./terraform

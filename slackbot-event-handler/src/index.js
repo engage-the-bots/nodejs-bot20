@@ -53,7 +53,8 @@ app.action('button_click', async ({ body, ack, say }) => {
 
 // Handle the Lambda function event
 module.exports.lambda_handler = async (event, context, callback) => {
-    console.log('on lambda_handler');
     const handler = await awsLambdaReceiver.start();
+    console.log('on event');
+    console.log(event);
     return handler(event, context, callback);
 }
