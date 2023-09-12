@@ -20,34 +20,38 @@ const app = new App({
 });
 
 // Listens to incoming messages that contain "hello"
-app.message('hello', async ({ message, say }) => {
-    // say() sends a message to the channel where the event was triggered
-    await say({
-        blocks: [
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": `Hey there <@${message.user}>!`
-                },
-                "accessory": {
-                    "type": "button",
-                    "text": {
-                        "type": "plain_text",
-                        "text": "Click Me"
-                    },
-                    "action_id": "button_click"
-                }
-            }
-        ],
-        text: `Hey there <@${message.user}>!`
-    });
+// app.message('hello', async ({ message, say }) => {
+//     // say() sends a message to the channel where the event was triggered
+//     await say({
+//         blocks: [
+//             {
+//                 "type": "section",
+//                 "text": {
+//                     "type": "mrkdwn",
+//                     "text": `Hey there <@${message.user}>!`
+//                 },
+//                 "accessory": {
+//                     "type": "button",
+//                     "text": {
+//                         "type": "plain_text",
+//                         "text": "Click Me"
+//                     },
+//                     "action_id": "button_click"
+//                 }
+//             }
+//         ],
+//         text: `Hey there <@${message.user}>!`
+//     });
+// });
+
+app.event('app_home_opened', ({ event, say }) => {
+    say(`Hello world, <@${event.user}>!`);
 });
+
 
 // Listens for an action from a button click
 app.action('button_click', async ({ body, ack, say }) => {
     await ack();
-
     await say(`<@${body.user.id}> clicked the button`);
 });
 
