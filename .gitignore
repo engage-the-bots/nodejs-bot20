@@ -1,2 +1,3 @@
 .idea
 terraform/*.auto.tfvars
+slackbot-event-handler/node_modules/*
