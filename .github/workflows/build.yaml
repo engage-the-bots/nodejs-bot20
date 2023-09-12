@@ -22,6 +22,7 @@ jobs:
           node-version: '18.x'
         run: npm ci --omit=dev
         working-directory: ./slackbot-event-handler
+        id: pkg_slackbot_event_handler
 
       - name: Setup TF CLI and wrapper
         uses: hashicorp/setup-terraform@v2
