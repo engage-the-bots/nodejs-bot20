@@ -16,8 +16,7 @@ const app = new App({
     // the acknowledgement until after your handler has run to ensure your handler
     // isn't terminated early by responding to the HTTP request that triggered it.
 
-    // processBeforeResponse: true
-
+    processBeforeResponse: true
 });
 
 // Listens to incoming messages that contain "hello"
