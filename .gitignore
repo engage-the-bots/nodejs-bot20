@@ -1,4 +1,5 @@
 .idea
+.DS_Store
 terraform/*.auto.tfvars
 terraform/.terraform
 slackbot-event-handler/node_modules/*
