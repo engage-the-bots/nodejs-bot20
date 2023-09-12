@@ -2,4 +2,4 @@
 .DS_Store
 terraform/*.auto.tfvars
 terraform/.terraform
-slackbot-event-handler/node_modules/*
+slackbot-event-handler/src/node_modules/*
