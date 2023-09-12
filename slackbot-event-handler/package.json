@@ -2,7 +2,7 @@
   "version": "1.0.0",
   "name": "slackbot-event-handler",
   "description": "Lambda function invoked as the event handler for incoming slack events.",
-  "main": "src/app.js",
+  "main": "src/index.js",
   "dependencies": {
     "@slack/bolt": "^3.13.3"
   }
