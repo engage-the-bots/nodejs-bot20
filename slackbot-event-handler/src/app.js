@@ -13,8 +13,26 @@ const app = new App({
 
 app.event('app_mention', async ({ event, say }) => {
     console.log('on event -- app_mention');
-    console.log(`with message[${JSON.stringify(event)}]`);
+    console.log(`with message [${JSON.stringify(event)}]`);
     await say(`Hey there <@${event.user}>!`);
+});
+
+// Listens to incoming messages that contain "hello"
+app.message('help', async ({ message, say }) => {
+    // say() sends a message to the channel where the event was triggered
+    conosle.log('on message -- help')
+    console.log(`with message [${JSON.stringify(message)}]`);
+    await say({
+        blocks: [
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": "Sure! Here are some example mentions I respond to:\n>@me help\n>@me hello\n>@me goodbye"
+                }
+            }
+        ]
+    });
 });
 
 // Listens to incoming messages that contain "hello"
@@ -43,28 +61,30 @@ app.message('hello', async ({ message, say }) => {
     });
 });
 
-app.event('app_home_opened', ({ event, say }) => {
-    say(`Hello world, <@${event.user}>!`);
-});
-
-
 // Listens for an action from a button click
 app.action('button_click', async ({ body, ack, say }) => {
     await ack();
     await say(`<@${body.user.id}> clicked the button`);
 });
 
+
+app.event('app_home_opened', async ({ event, say }) => {
+    console.log('on event -- app_home_opened');
+    console.log(`with event [${JSON.stringify(event)}]`);
+    await say(`Hello, <@${event.user}>! Try typing 'help' to see what I can do.`);
+});
+
 // Listens to incoming messages that contain "goodbye"
 app.message('goodbye', async ({ message, say }) => {
     // say() sends a message to the channel where the event was triggered
     console.log('on goodbye');
+    console.log(`with message [${JSON.stringify(message)}]`);
     await say(`See ya later, <@${message.user}> :wave:`);
 });
 
 // Handle the Lambda function event
 module.exports.handler = async (event, context, callback) => {
-    console.log('on handler');
-    console.log(event);
+    console.log('on lambda handler');
     const handler = await awsLambdaReceiver.start();
     return handler(event, context, callback);
 }
