@@ -106,9 +106,9 @@ function buildTemplateOptionSelects() {
                 text: "Select an item",
                 emoji: true
             },
-            options: templateOptions
-        },
-        action_id: "static_select-template"
+            options: templateOptions,
+            action_id: "static_select-template"
+        }
     }
 }
 
