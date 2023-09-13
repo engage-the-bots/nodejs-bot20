@@ -125,7 +125,7 @@ app.command('/make', async ({ ack, body, client, logger }) => {
 
     try {
         // Call views.open with the built-in client
-        const result = await client.views.open({
+        let newMemeModalView = {
             // Pass a valid trigger_id within 3 seconds of receiving it
             trigger_id: body.trigger_id,
             // View payload
@@ -157,7 +157,10 @@ app.command('/make', async ({ ack, body, client, logger }) => {
                     }
                 ],
             }
-        });
+        }
+        console.log('on newMemeModalView');
+        console.log(newMemeModalView);
+        const result = await client.views.open(newMemeModalView);
         console.log('on result');
         console.log(result);
         return {
