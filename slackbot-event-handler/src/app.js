@@ -114,6 +114,9 @@ function buildTemplateOptionSelects() {
 /* Slash command handler */
 // Listen for a slash command invocation
 app.command('/make', async ({ ack, body, client, logger }) => {
+    console.log('on slash command -- make');
+    console.log('with body');
+    console.log(body);
     // Acknowledge the command request
     await ack();
 
@@ -158,6 +161,53 @@ app.command('/make', async ({ ack, body, client, logger }) => {
             // To continue with this interaction, return false for the completion
             completed: false,
         };
+    }
+    catch (error) {
+        logger.error(error);
+    }
+});
+
+// Listen for a button invocation with action_id `button_abc` (assume it's inside of a modal)
+app.action('button_caption', async ({ ack, body, client, logger }) => {
+    // Acknowledge the button request
+    await ack();
+
+    try {
+        if (body.type !== 'block_actions' || !body.view) {
+            return;
+        }
+        // Call views.update with the built-in client
+        const result = await client.views.update({
+            // Pass the view_id
+            view_id: body.view.id,
+            // Pass the current hash to avoid race conditions
+            hash: body.view.hash,
+            // View payload with updated blocks
+            view: {
+                type: 'modal',
+                // View identifier
+                callback_id: 'view_1',
+                title: {
+                    type: 'plain_text',
+                    text: 'Updated modal'
+                },
+                blocks: [
+                    {
+                        type: 'section',
+                        text: {
+                            type: 'plain_text',
+                            text: 'You updated the modal!'
+                        }
+                    },
+                    {
+                        type: 'image',
+                        image_url: 'https://media.giphy.com/media/SVZGEcYt7brkFUyU90/giphy.gif',
+                        alt_text: 'Yay! The modal was updated'
+                    }
+                ]
+            }
+        });
+        logger.info(result);
     }
     catch (error) {
         logger.error(error);
