@@ -152,6 +152,32 @@ app.message('help', async ({ message, say }) => {
     await say(helpMessage);
 });
 
+// Listens to incoming messages that contain "hello"
+app.message('test', async ({ message, say }) => {
+    // remove mention from message
+    message = message.text.replace(/<@.*>/, '').trim();
+    let imageUrl = messageToImageUrl(message);
+
+    if(imageUrl) {
+        console.log('on imageUrl')
+        console.log(imageUrl)
+        await say(imageBlocksBuilder(imageUrl));
+    } else {
+        await say({
+            blocks: [
+                {
+                    "type": "section",
+                    "text": {
+                        "type": "mrkdwn",
+                        "text": "There was a problem with the format of your meme string. Try direct typing 'help' to see what formats are avalable."
+                    }
+                }
+            ]
+        })
+    }
+});
+
+
 // Boilerplate - Handle the Lambda function event
 module.exports.handler = async (event, context, callback) => {
     console.log('on lambda handler');
