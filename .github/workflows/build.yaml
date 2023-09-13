@@ -16,6 +16,9 @@ jobs:
       contents: read
 
     steps:
+      - name: get repository name
+        run: echo "REPOSITORY_NAME=${GITHUB_REPOSITORY#*/}" >> $GITHUB_ENV
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
@@ -46,12 +49,12 @@ jobs:
         working-directory: ./slackbot-event-handler
 
       - name: terraform init
-        run: terraform init -upgrade
+        run: terraform init -backend-config=key=${{ github.repository }}
         id: tf_init
         working-directory: ./terraform
 
       - name: terraform apply
-        run: terraform apply -auto-approve -input=false
+        run: terraform apply -auto-approve -input=false -var slackbot_resource_name=${{ env.REPOSITORY_NAME }}
         id: tf_apply
         working-directory: ./terraform
 

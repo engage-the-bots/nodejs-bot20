@@ -1,5 +1,5 @@
 data "aws_ssm_parameter" "slack" {
-  name = "/engage2023/bot2/slack"
+  name = "/engage2023/${var.slackbot_resource_name}/slack"
 }
 
 module "bot_lambda" {
