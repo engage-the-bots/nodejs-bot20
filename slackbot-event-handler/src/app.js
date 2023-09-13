@@ -20,7 +20,7 @@ app.event('app_mention', async ({ event, say }) => {
 // Listens to incoming messages that contain "hello"
 app.message('help', async ({ message, say }) => {
     // say() sends a message to the channel where the event was triggered
-    conosle.log('on message -- help')
+    console.log('on message -- help')
     console.log(`with message [${JSON.stringify(message)}]`);
     await say({
         blocks: [
