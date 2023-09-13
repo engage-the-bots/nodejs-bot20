@@ -11,10 +11,10 @@ const app = new App({
     receiver: awsLambdaReceiver,
 });
 
-Listens to incoming messages that contain "hello"
+// Listens to incoming messages that contain "hello"
 app.message('hello', async ({ message, say }) => {
     // say() sends a message to the channel where the event was triggered
-    console.log('on hello');
+    console.log('on goodbye');
     await say({
         blocks: [
             {
