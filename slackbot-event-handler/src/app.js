@@ -21,7 +21,7 @@ app.event('app_mention', async ({ event, say }) => {
     console.log('on event -- app_mention');
     console.log(`with event [${JSON.stringify(event)}]`);
 
-    if(event.text.includes('hello') || event.text.includes('hi')) {
+    if(event.text.includes('hello')) {
         // Respond to mentions that say "hello" or "hi"
         console.log('A mention was made with "hello" or "hi" in the message');
         await say({
@@ -44,9 +44,9 @@ app.event('app_mention', async ({ event, say }) => {
             ],
             text: `Hey there <@${event.user}>!`
         });
-    } else if(event.text.includes('goodbye') || event.text.includes('bye')) {
+    } else if(event.text.includes('goodbye')) {
         // Respond to mentions that say "goodbye"
-        console.log('A mention was made with "goodbye" or "bye" in the message');
+        console.log('A mention was made with "goodbye" in the message');
         await say(`See ya later, <@${event.user}> :wave:`);
     } else {
         // Respond to all other mentions with a default message
