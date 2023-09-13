@@ -13,12 +13,12 @@ const app = new App({
 });
 
 let keywordMemeMap = {
-    'this-is-fine': { template: '/fine', resourcePathParms: 2, type: '.png', title: 'This is fine', memeString: '_this-is-fine&top&bottom_', exampleImageUrl: 'https://api.memegen.link/images/fine/top/bottom.png'},
-    'panik-kalm-panik': { template: '/panik-kalm-panik', resourcePathParms: 3, type: '.png', title: 'Panik Kalm PANIK', memeString: '_kalm-panik-kalm&you hear a sound downstairs&It\'s just a cat&you don\'t have a cat_', exampleImageUrl: 'https://api.memegen.link/images/panik-kalm-panik/You_hear_a_sound_downstairs/It\'s_just_a_cat/You_don\'t_have_a_cat.png'},
-    'winter-is-coming': { template: '/winter', resourcePathParms: 2, type: '.png', title: 'Winter is coming', memeString: '_winter-is-coming&prepare yourself&winter is coming_', exampleImageUrl: 'https://api.memegen.link/images/winter/prepare_yourself/winter_is_coming.png'},
-    'yo-dawg': { template: '/yodawg', resourcePathParms: 2, type: '.png', title: 'Yo dawg', memeString: '_yo-dawg&yo dawg&i heard you like memes_', exampleImageUrl: 'https://api.memegen.link/images/yodawg/yo_dawg/i_heard_you_like_memes.png'},
-    'doge': { template: '/doge', resourcePathParms: 2, type: '.png', title: 'Such doge', memeString: '_doge&such meme&very skill_', exampleImageUrl: 'https://api.memegen.link/images/doge/such_meme/very_skill.png'},
-    'feels-good': { template: '/feelsgood', resourcePathParms: 2, type: '.png', title: 'Feels good', memeString: '_feels-good&top&bottom_', exampleImageUrl: 'https://api.memegen.link/images/feelsgood/top/bottom.png'}, //https://api.memegen.link/images/fine/_/this_is_fine.png
+    'this-is-fine': { template: '/fine', resourcePathParms: 2, type: '.png', title: 'This is fine', memeString: '`this-is-fine&top&bottom`', exampleImageUrl: 'https://api.memegen.link/images/fine/top/bottom.png'},
+    'panik-kalm-panik': { template: '/panik-kalm-panik', resourcePathParms: 3, type: '.png', title: 'Panik Kalm PANIK', memeString: '`panik-kalm-panik&you hear a sound downstairs&It\'s just a cat&you don\'t have a cat`', exampleImageUrl: 'https://api.memegen.link/images/panik-kalm-panik/You_hear_a_sound_downstairs/It\'s_just_a_cat/You_don\'t_have_a_cat.png'},
+    'winter-is-coming': { template: '/winter', resourcePathParms: 2, type: '.png', title: 'Winter is coming', memeString: '`winter-is-coming&prepare yourself&winter is coming`', exampleImageUrl: 'https://api.memegen.link/images/winter/prepare_yourself/winter_is_coming.png'},
+    'yo-dawg': { template: '/yodawg', resourcePathParms: 2, type: '.png', title: 'Yo dawg', memeString: '`yo-dawg&yo dawg&i heard you like memes`', exampleImageUrl: 'https://api.memegen.link/images/yodawg/yo_dawg/i_heard_you_like_memes.png'},
+    'doge': { template: '/doge', resourcePathParms: 2, type: '.png', title: 'Such doge', memeString: '`doge&such meme&very skill`', exampleImageUrl: 'https://api.memegen.link/images/doge/such_meme/very_skill.png'},
+    'feels-good': { template: '/feelsgood', resourcePathParms: 2, type: '.png', title: 'Feels good', memeString: '`feels-good&top&bottom`', exampleImageUrl: 'https://api.memegen.link/images/feelsgood/top/bottom.png'}, //https://api.memegen.link/images/fine/_/this_is_fine.png
     // https://api.memegen.link/images/patrick/why_don't_we_take_all_the_memes/and_put_them_on_memegen.png
     // https://api.memegen.link/images/right/Senior_Developer/Junior_Developer/Put_it_in_the_backlog./So_we_can_fix_it_later,_right~q/So_we_can_fix_it_later,_right~q.png
     // https://api.memegen.link/images/dbg/Clicking_the_'X'_on_a_mobile_ad/The_'X'_is_part_of_the_ad.png
