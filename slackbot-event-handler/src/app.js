@@ -13,6 +13,7 @@ const app = new App({
 
 app.event('app_mention', async ({ message, say }) => {
     console.log('on app_mention');
+    console.log(`with message[${JSON.stringify(message)}]`);
     await say(`Hey there <@${message.user}>!`);
 });
 
