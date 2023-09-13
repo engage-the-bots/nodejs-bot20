@@ -80,6 +80,90 @@ function imageBlocksBuilder(imageUrl) {
     }
 }
 
+function buildTemplateOptionSelects() {
+    let templateOptions = [];
+    for (const [keyword, meme] of Object.entries(keywordMemeMap)) {
+        templateOptions.push({
+            text: {
+                type: 'plain_text',
+                text: meme.title
+            },
+            value: keyword
+        });
+    }
+
+    return {
+        type: "section",
+        text: {
+            type: "mrkdwn",
+            text: "Select a template"
+        },
+        accessory: {
+            type: "static_select",
+            optional: false,
+            placeholder: {
+                type: "plain_text",
+                text: "Select an item",
+                emoji: true
+            },
+            options: templateOptions
+        }
+    }
+}
+
+/* Slash command handler */
+// Listen for a slash command invocation
+app.command('/make', async ({ ack, body, client, logger }) => {
+    // Acknowledge the command request
+    await ack();
+
+    try {
+        // Call views.open with the built-in client
+        const result = await client.views.open({
+            // Pass a valid trigger_id within 3 seconds of receiving it
+            trigger_id: body.trigger_id,
+            // View payload
+            view: {
+                type: 'modal',
+                // View identifier
+                callback_id: 'view_1',
+                title: {
+                    type: 'plain_text',
+                    text: 'Post a meme'
+                },
+                close: { type: "plain_text", text: "Cancel"},
+                blocks: [
+                    buildTemplateOptionSelects(),
+                    {
+                        type: 'section',
+                        text: {
+                            type: 'mrkdwn',
+                            text: 'Next:'
+                        },
+                        accessory: {
+                            type: 'button',
+                            text: {
+                                type: 'plain_text',
+                                text: 'Add captions',
+                            },
+                            action_id: 'button_caption'
+                        }
+                    }
+                ],
+            }
+        });
+        console.log('on result');
+        console.log(result);
+        return {
+            // To continue with this interaction, return false for the completion
+            completed: false,
+        };
+    }
+    catch (error) {
+        logger.error(error);
+    }
+});
+
 /* Mention handler */
 app.event('app_mention', async ({ event, say , client}) => {
     console.log('on event -- app_mention');
