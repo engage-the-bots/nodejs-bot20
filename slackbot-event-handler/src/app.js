@@ -121,7 +121,7 @@ app.command('/make', async ({ ack, body, client, logger }) => {
     await ack();
 
     console.log('on buildTemplateOptionSelects');
-    console.log(buildTemplateOptionSelects());
+    console.log(JSON.stringify(buildTemplateOptionSelects()));
 
     try {
         // Call views.open with the built-in client
