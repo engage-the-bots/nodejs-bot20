@@ -143,9 +143,7 @@ app.message('help', async ({ message, say }) => {
         };
         console.log('on memeSections');
         console.log(memeSections);
-        helpMessage.blocks.push({
-            memeSections
-        });
+        helpMessage.blocks.push(memeSections);
     }
     console.log('on helpMessage');
     console.log(helpMessage);
