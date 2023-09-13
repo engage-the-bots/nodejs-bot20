@@ -120,6 +120,9 @@ app.command('/make', async ({ ack, body, client, logger }) => {
     // Acknowledge the command request
     await ack();
 
+    console.log('on buildTemplateOptionSelects');
+    console.log(buildTemplateOptionSelects());
+
     try {
         // Call views.open with the built-in client
         const result = await client.views.open({
