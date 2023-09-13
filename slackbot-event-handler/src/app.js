@@ -139,7 +139,7 @@ app.command('/make', async ({ ack, body, client, logger }) => {
                 },
                 close: { type: "plain_text", text: "Cancel"},
                 blocks: [
-                    buildTemplateOptionSelects(),
+                    // buildTemplateOptionSelects(),
                     {
                         type: 'section',
                         text: {
@@ -159,7 +159,7 @@ app.command('/make', async ({ ack, body, client, logger }) => {
             }
         }
         console.log('on newMemeModalView');
-        console.log(newMemeModalView);
+        console.log(JSON.stringify(newMemeModalView));
         const result = await client.views.open(newMemeModalView);
         console.log('on result');
         console.log(result);
