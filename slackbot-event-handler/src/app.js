@@ -11,10 +11,10 @@ const app = new App({
     receiver: awsLambdaReceiver,
 });
 
-app.event('app_mention', async ({ message, say }) => {
-    console.log('on app_mention');
-    console.log(`with message[${JSON.stringify(message)}]`);
-    await say(`Hey there <@${message.user}>!`);
+app.event('app_mention', async ({ event, say }) => {
+    console.log('on event -- app_mention');
+    console.log(`with message[${JSON.stringify(event)}]`);
+    await say(`Hey there <@${event.user}>!`);
 });
 
 // Listens to incoming messages that contain "hello"
