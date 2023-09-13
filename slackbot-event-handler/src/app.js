@@ -20,11 +20,11 @@ let keywordMemeMap = {
     'doge': { template: '/doge', resourcePathParms: 2, type: '.png', title: 'Such doge', memeString: '`doge&such meme&very skill`', exampleImageUrl: 'https://api.memegen.link/images/doge/such_meme/very_skill.png'},
     'feels-good': { template: '/feelsgood', resourcePathParms: 2, type: '.png', title: 'Feels good', memeString: '`feels-good&top&bottom`', exampleImageUrl: 'https://api.memegen.link/images/feelsgood/top/bottom.png'},
     'drake': { template: '/drake', resourcePathParms: 2, type: '.png', title: 'Drake', memeString: '`drake&no&yes`', exampleImageUrl: 'https://api.memegen.link/images/drake/no/yes.png'},
-    // https://api.memegen.link/images/drake/left_on_unread/left_on_read.png
+    'woman-cat': { template: '/woman-cat', resourcePathParms: 2, type: '.png', title: 'Woman yelling at cat', memeString: '`woman-cat&girls when they see a spider&the spider`', exampleImageUrl: 'https://api.memegen.link/images/woman-cat/girls_when_they_see_a_spider/the_spider.png'},
+    'spiderman-pointing': { template: '/spiderman', resourcePathParms: 2, type: '.png', title: 'Spiderman pointing', memeString: '`spiderman-pointing&2 + 2&2 x 2`', exampleImageUrl: 'https://api.memegen.link/images/spiderman/2_+_2/2_x_2.png'},
     // https://api.memegen.link/images/patrick/why_don't_we_take_all_the_memes/and_put_them_on_memegen.png
     // https://api.memegen.link/images/right/Senior_Developer/Junior_Developer/Put_it_in_the_backlog./So_we_can_fix_it_later,_right~q/So_we_can_fix_it_later,_right~q.png
     // https://api.memegen.link/images/dbg/Clicking_the_'X'_on_a_mobile_ad/The_'X'_is_part_of_the_ad.png
-    // https://api.memegen.link/images/drake/left_on_unread/left_on_read.png
     // https://api.memegen.link/images/drowning/Me_Asking_for_Help/Online_Commenter/I'm_having_that_problem_too..png
 }
 
