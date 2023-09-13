@@ -1,3 +1,4 @@
+/* Slack bolt application boilerplate */
 const { App, AwsLambdaReceiver } = require('@slack/bolt');
 
 // Initialize your custom receiver
@@ -11,10 +12,61 @@ const app = new App({
     receiver: awsLambdaReceiver,
 });
 
+const HELP_MESSAGE = {
+
+}
+
+/* Mention handler */
 app.event('app_mention', async ({ event, say }) => {
     console.log('on event -- app_mention');
-    console.log(`with message [${JSON.stringify(event)}]`);
-    await say(`Hey there <@${event.user}>!`);
+    console.log(`with event [${JSON.stringify(event)}]`);
+
+    if(event.text.includes('hello') || event.text.includes('hi')) {
+        // Respond to mentions that say "hello" or "hi"
+        console.log('A mention was made with "hello" or "hi" in the message');
+        await say({
+            blocks: [
+                {
+                    "type": "section",
+                    "text": {
+                        "type": "mrkdwn",
+                        "text": `Hey there <@${event.user}>!`
+                    },
+                    "accessory": {
+                        "type": "button",
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Click Me"
+                        },
+                        "action_id": "button_click"
+                    }
+                }
+            ],
+            text: `Hey there <@${event.user}>!`
+        });
+    } else if(event.text.includes('goodbye') || event.text.includes('bye')) {
+        // Respond to mentions that say "goodbye"
+        console.log('A mention was made with "goodbye" or "bye" in the message');
+        await say(`See ya later, <@${event.user}> :wave:`);
+    } else {
+        // Respond to all other mentions with a default message
+        await say(`Hello <@${event.user}>, feel free to direct-message "help" to me to see what I can do.`);
+    }
+});
+
+// Listens for an action from a button click
+app.action('button_click', async ({ body, ack, say }) => {
+    await ack();
+    await say(`<@${body.user.id}> clicked the button`);
+});
+
+
+/* Direct message handlers */
+// A user clicked into your App Home (aka App DM)
+app.event('app_home_opened', async ({ event, say }) => {
+    console.log('on event -- app_home_opened');
+    console.log(`with event [${JSON.stringify(event)}]`);
+    await say(`Hello, <@${event.user}>! Try typing 'help' to see what I can do.`);
 });
 
 // Listens to incoming messages that contain "hello"
@@ -35,54 +87,7 @@ app.message('help', async ({ message, say }) => {
     });
 });
 
-// Listens to incoming messages that contain "hello"
-app.message('hello', async ({ message, say }) => {
-    // say() sends a message to the channel where the event was triggered
-    console.log('on goodbye');
-    await say({
-        blocks: [
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": `Hey there <@${message.user}>!`
-                },
-                "accessory": {
-                    "type": "button",
-                    "text": {
-                        "type": "plain_text",
-                        "text": "Click Me"
-                    },
-                    "action_id": "button_click"
-                }
-            }
-        ],
-        text: `Hey there <@${message.user}>!`
-    });
-});
-
-// Listens for an action from a button click
-app.action('button_click', async ({ body, ack, say }) => {
-    await ack();
-    await say(`<@${body.user.id}> clicked the button`);
-});
-
-
-app.event('app_home_opened', async ({ event, say }) => {
-    console.log('on event -- app_home_opened');
-    console.log(`with event [${JSON.stringify(event)}]`);
-    await say(`Hello, <@${event.user}>! Try typing 'help' to see what I can do.`);
-});
-
-// Listens to incoming messages that contain "goodbye"
-app.message('goodbye', async ({ message, say }) => {
-    // say() sends a message to the channel where the event was triggered
-    console.log('on goodbye');
-    console.log(`with message [${JSON.stringify(message)}]`);
-    await say(`See ya later, <@${message.user}> :wave:`);
-});
-
-// Handle the Lambda function event
+// Boilerplate - Handle the Lambda function event
 module.exports.handler = async (event, context, callback) => {
     console.log('on lambda handler');
     const handler = await awsLambdaReceiver.start();
