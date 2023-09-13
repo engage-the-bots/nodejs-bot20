@@ -86,7 +86,8 @@ function buildTemplateOptionSelects() {
         templateOptions.push({
             text: {
                 type: 'plain_text',
-                text: meme.title
+                text: meme.title,
+                emoji: true
             },
             value: keyword
         });
@@ -100,7 +101,6 @@ function buildTemplateOptionSelects() {
         },
         accessory: {
             type: "static_select",
-            optional: false,
             placeholder: {
                 type: "plain_text",
                 text: "Select an item",
@@ -108,7 +108,7 @@ function buildTemplateOptionSelects() {
             },
             options: templateOptions
         },
-        action_id: "static_select-action"
+        action_id: "static_select-template"
     }
 }
 
@@ -174,11 +174,31 @@ app.command('/make', async ({ ack, body, client, logger }) => {
     }
 });
 
+function buildParameterizedCaptionBlocks(captionCount) {
+    let captionBlocks = [];
+    for(let i = 0; i < captionCount; i++) {
+        captionBlocks.push({
+            type: 'input',
+            block_id: `caption_${i}`,
+            element: {
+                type: 'plain_text_input',
+                action_id: `caption_${i}`
+            },
+            label: {
+                type: 'plain_text',
+                text: `Caption ${i + 1}`
+            }
+        });
+    }
+    return captionBlocks;
+}
+
 // Listen for a button invocation with action_id `button_abc` (assume it's inside of a modal)
-app.action('button_caption', async ({ ack, body, client, logger }) => {
+app.action('static_select-template', async ({ ack, body, client, logger }) => {
     // Acknowledge the button request
     await ack();
-
+    console.log('on action -- static_select-template with body:') ;
+    console.log(body);
     try {
         if (body.type !== 'block_actions' || !body.view) {
             return;
