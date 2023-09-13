@@ -107,7 +107,8 @@ function buildTemplateOptionSelects() {
                 emoji: true
             },
             options: templateOptions
-        }
+        },
+        action_id: "static_select-action"
     }
 }
 
@@ -139,7 +140,7 @@ app.command('/make', async ({ ack, body, client, logger }) => {
                 },
                 close: { type: "plain_text", text: "Cancel"},
                 blocks: [
-                    // buildTemplateOptionSelects(),
+                    buildTemplateOptionSelects(),
                     {
                         type: 'section',
                         text: {
