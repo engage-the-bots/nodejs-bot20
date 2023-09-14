@@ -1,0 +1,1 @@
+{"filename": "builds/6983cd5779e5fa4b9cb1eda5c4d3292d655accd4aa21627328d59e735ecf2e56.zip", "runtime": "nodejs18.x", "artifacts_dir": "builds", "build_plan": [["zip", "../slackbot-event-handler", null]]}

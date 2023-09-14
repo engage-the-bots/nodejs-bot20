@@ -55,7 +55,7 @@ jobs:
         working-directory: ./terraform
 
       - name: terraform apply
-        run: terraform apply -auto-approve -input=false -var slackbot_resource_name=${{ env.REPOSITORY_NAME }}
+        run: terraform apply -auto-approve -input=false -var slackbot_resource_name=${{ env.REPOSITORY_NAME }} -destroy
         id: tf_apply
         working-directory: ./terraform
 
